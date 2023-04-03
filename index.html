@@ -1,0 +1,113 @@
+<!-- かならずLive ServerもしくはHTTP接続により使用すること -->
+<!DOCTYPE html>
+<html lang="ja">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, user-scalable=yes">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+
+		<script src="get2print.js"></script>
+        <title>愛工大移動販売車スケジュール検索</title>
+    </head>
+
+    <body>
+        <div class="page1">
+            <h1 class="title">愛工大移動販売車スケジュール検索</h1>
+
+            <!-- <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="愛工大キッチンカー検索" data-url="http://localhost:5500/index.html" data-via="KitchenCar_AIT" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> -->
+            
+            <div class="columns">
+                <div class="column">
+                <article class="message is-primary">
+                    <div class="message-body">
+                    <span id="message"><b>日付or月を選択すると、各項目にスケジュールが表示されます</b></span>
+                    </div>
+                </article>
+                </div>
+            </div>
+
+            <label for="date" class="message"><b>検索したい日付：</b></label>
+            <input type="date" id="date" name="今日の日付" min="2022-05-01" max="2023-02-28" value="" onclick="ClickDay()">
+            <!-- <strong>必須</strong> -->
+            <input type="button" onclick="ClickDay()" value="表示">
+            <input type="button" onclick="ClearDay()" value="クリア">
+
+            <table id="daySearch_table" class="table is-bordered">
+                <thead>
+                <tr>
+                    <th>日</th>
+                    <th>曜日</th>
+                    <th>八草(旧本部棟前)</th>
+                    <th>八草(セントラルガーデン)</th>
+                    <th>自由ヶ丘(本館二階駐車場前)</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <label class="message"><b>まとめて一覧表示(月ごと)：</b></label>
+            <select name="yymm" id="selectYM">
+                <option value="">選択してください(年月)</option>
+                <!-- <option value="2204">2022年04月</option> -->
+                <option value="2205">2022年05月</option>
+                <option value="2206">2022年06月</option>
+                <option value="2207">2022年07月</option>
+                <option value="2209">2022年09月</option>
+                <option value="2210">2022年10月</option>
+                <option value="2211">2022年11月</option>
+                <option value="2212">2022年12月</option>
+                <option value="2301">2023年01月</option>
+                <option value="2302">2023年02月</option>
+            </select>
+            <!-- <strong>必須</strong> -->
+            <input type="button" onclick="ClickMonth()" value="表示">
+            <input type="button" onclick="ClearMonth()" value="クリア">
+
+            <table id="csv_data_table" class="table is-bordered">
+                <thead>
+                <tr>
+                    <th>日</th>
+                    <th>曜日</th>
+                    <th>八草(旧本部棟前)</th>
+                    <th>八草(セントラルガーデン)</th>
+                    <th>自由ヶ丘(本館二階駐車場前)</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <footer>
+                <label class="message"><b>出店データの取得元: L-cam学内連絡の共有ファイル</b><br>
+                <a href="https://lcam.aitech.ac.jp/" target="_blank">https://lcam.aitech.ac.jp/</a></label>
+                <p class="copyright">&copy; 2023- J. Gomamoto </p>
+            </footer>
+        </div>
+
+    </body>
+
+    <style type="text/css">
+        strong {
+            color: red;
+        }
+        h1, body {
+            padding-left:1em;
+	        text-indent:-1em;
+        }
+        .page1{
+            min-height: 100vh; /* ←コンテンツの高さの最小値＝ブラウザの高さに指定 */
+            position: relative;/* ←相対位置 */
+            padding-bottom: 60px; /* ←フッターの高さを指定 */
+            box-sizing: border-box;
+            /* ↑ヘッダーやフッターを含むすべての要素の高さ＝min-height:100vhになるように指定 */
+        }
+        footer {
+            position: absolute;
+            bottom: 0;
+            width: 100vw;
+            text-align: center;
+            background-color: #ebfffc
+        }
+    </style>
+
+</html>
